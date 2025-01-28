@@ -15,6 +15,12 @@ class TestSuccess(HelloWorldLambdaTestCase):
             
         self.assertEqual(self.HANDLER.handle_request(event , dict()), {
             "statusCode": 200,
-            "message": "Hello from Lambda"
+            "headers": {
+                "Content-Type": "application/json"
+            },
+            "body": {
+                'statusCode': 200,
+                'message': "Hello from Lambda"
+            }
         })
 

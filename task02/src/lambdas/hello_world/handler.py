@@ -24,8 +24,14 @@ class HelloWorld(AbstractLambda):
             message = f"Bad request syntax or unsupported method. Request path: {path}. HTTP method: {method}"
 
         response = {
-            "statusCode": statusCode,
-            "message": message
+            "statusCode": 200,
+            "headers": {
+                "Content-Type": "application/json"
+            },
+            "body": {
+                'statusCode': statusCode,
+                'message': message
+            }
         }
         
         return response
