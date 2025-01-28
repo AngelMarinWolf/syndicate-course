@@ -13,8 +13,22 @@ class HelloWorld(AbstractLambda):
         """
         Explain incoming event here
         """
-        # todo implement business logic
-        return 200
+        path = event['rawPath']
+        method = event['requestContext']['http']['method']
+
+        if path == '/hello' and method == 'GET':
+            statusCode = 200
+            message = "Hello from Lambda"
+        else:
+            statusCode = 400
+            message = f"Bad request syntax or unsupported method. Request path: {path}. HTTP method: {method}"
+
+        response = {
+            "statusCode": statusCode,
+            "message": message
+        }
+        
+        return response
     
 
 HANDLER = HelloWorld()
